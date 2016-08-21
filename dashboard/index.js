@@ -322,7 +322,7 @@ Dashboard.prototype.layoutStatus = function () {
 
     this.status = blessed.box({
         parent: this.wrapper,
-        label: "Status",
+        label: "Information",
         tags: true,
         padding: padding,
         width: this.minimal ? "50%" : "100%",
