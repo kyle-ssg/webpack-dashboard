@@ -47,8 +47,7 @@ var padding = 0;
 var updateStatus = function () {
     var op = '{bold}Operation: {/}' + operation;
     var stat = '{bold}Status: {/}' + status;
-    var prog = '{bold}Progress: {/}' + progress;
-    dash.status.setContent(stat + '\n' + op + '\n' + prog);
+    dash.status.setContent(stat + '\n' + op);
 };
 
 function Dashboard (options) {
@@ -113,7 +112,6 @@ Dashboard.prototype.setData = function (dataArr) {
                 switch (data.value) {
                     case 'idle': {
                         operation = "{green-fg}{bold}Idle{/}";
-                        progress =  "{green-fg}{bold}100%{/}";
                     }
                     default: {
                         operation = "{grey-fg}{bold} Idle {/}";
@@ -178,7 +176,7 @@ Dashboard.prototype.layoutLog = function () {
     this.log = blessed.box({
         label: "Log",
         width: this.minimal ? "100%" : "75%",
-        height: this.minimal ? "70%" : "42%",
+        height: this.minimal ? "80%" : "42%",
         left: "0%",
         top: "0%",
         border: {
@@ -286,8 +284,8 @@ Dashboard.prototype.layoutStatus = function () {
 
     this.wrapper = blessed.layout({
         width: this.minimal ? "100%" : "33%",
-        height: this.minimal ? "30%" : "42%",
-        top: this.minimal ? "70%" : "0%",
+        height: this.minimal ? "20%" : "42%",
+        top: this.minimal ? "80%" : "0%",
         left: this.minimal ? "0%" : "75%",
         layout: "grid",
         style: style
