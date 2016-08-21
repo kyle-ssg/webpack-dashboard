@@ -45,8 +45,8 @@ var dash = null;
 var padding = 0;
 
 var updateStatus = function () {
-    var op = '{bold}Operation: {/}' + operation;
-    var stat = '{bold}Status: {/}' + status;
+    var op  = '{bold}Operation: {/}' + operation;
+    var stat= '{bold}Status:    {/}' + status;
     dash.status.setContent(stat + '\n' + op);
 };
 
@@ -114,7 +114,7 @@ Dashboard.prototype.setData = function (dataArr) {
                         operation = "{green-fg}{bold}Idle{/}";
                     }
                     default: {
-                        operation = "{grey-fg}{bold} Idle {/}";
+                        operation = "{grey-fg}{bold}" + data.value + "{/}";
                     }
                 }
                 updateStatus();
@@ -126,6 +126,7 @@ Dashboard.prototype.setData = function (dataArr) {
                 switch (data.value) {
                     case "Success":
                         content = "{green-fg}{bold}" + data.value + "{/}";
+                        operation = "{green-fg}{bold}Idle{/}";
                         break;
                     case "Failed":
                         content = "{red-fg}{bold}" + data.value + "{/}";
