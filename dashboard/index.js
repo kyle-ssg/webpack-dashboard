@@ -45,10 +45,10 @@ var dash = null;
 var padding = 0;
 
 var updateStatus = function () {
-    var op = '{bold}Operation: {/}'+operation;
-    var stat = '{bold}Status: {/}'+status;
-    var prog = '{bold}Progress: {/}'+progress;
-    dash.status.setContent( stat + '\n' + op + '\n' + prog);
+    var op = '{bold}Operation: {/}' + operation;
+    var stat = '{bold}Status: {/}' + status;
+    var prog = '{bold}Progress: {/}' + progress;
+    dash.status.setContent(stat + '\n' + op + '\n' + prog);
 };
 
 function Dashboard (options) {
@@ -84,7 +84,7 @@ function Dashboard (options) {
                 ip1 = (url).bold.blue;
                 ip2 = ('http://localhost:' + port).bold.green;
                 ip3 = (res + ':' + port).bold.grey;
-                this.ips.log(ip1  + '\n' + ip2 + '\n' + ip3 + '{/}')
+                this.ips.log(ip1 + '\n' + ip2 + '\n' + ip3 + '{/}')
             }.bind(this));
     }.bind(this));
 
@@ -103,13 +103,22 @@ Dashboard.prototype.setData = function (dataArr) {
                     percent && self.progress.setContent(percent.toString() + "%");
                 } else {
                     percent && self.progressbar.setContent(percent.toString() + "%");
-                    progress = percent;
+                    progress = "{orange-fg}{bold}" + percent + "{/}";
                     updateStatus();
                 }
                 break;
             }
             case "operations": {
                 operation = data.value;
+                switch (data.value) {
+                    case 'idle': {
+                        operation = "{green-fg}{bold}Idle{/}";
+                        progress =  "{green-fg}{bold}100%{/}";
+                    }
+                    default: {
+                        operation = "{grey-fg}{bold} Idle {/}";
+                    }
+                }
                 updateStatus();
                 break;
             }
@@ -338,8 +347,6 @@ Dashboard.prototype.layoutStatus = function () {
         },
         style: style,
     });
-
-
 
 
     this.ips = blessed.log({
