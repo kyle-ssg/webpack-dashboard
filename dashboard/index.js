@@ -353,16 +353,12 @@ Dashboard.prototype.layoutStatus = function () {
         tags: true,
         width: "100%-5",
         scrollable: true,
-        input: true,
         alwaysScroll: true,
         scrollbar: {
             ch: " ",
             inverse: true
         },
-        keys: true,
-        vi: true,
         style: style,
-        mouse: true,
     });
 
     this.progressbar = blessed.ProgressBar({
