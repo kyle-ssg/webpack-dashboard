@@ -13,6 +13,7 @@ program.version(pkg.version);
 program.option("-c, --color [color]", "Dashboard color");
 program.option("-m, --minimal", "Minimal mode");
 program.option("-p, --port [port]", "Socket listener port");
+program.option("-s, --skip-ngrok", "Skip ngrok");
 program.usage("[options] -- [script] [arguments]");
 program.parse(process.argv);
 
@@ -35,7 +36,8 @@ var child = spawn(command, args, {
 
 var dashboard = new Dashboard({
   color: program.color || "green",
-  minimal: program.minimal || false
+  minimal: program.minimal || false,
+  skipNgrok: program.skipNgrok || false
 });
 
 var port = program.port || 9838;
