@@ -170,6 +170,7 @@ Then, sit back and pretend you're an astronaut.
  - `-c, --color [color]` - Custom ANSI color for your dashboard
  - `-m, --minimal` - Runs the dashboard in minimal mode
  - `-p, --port [port]` - Custom port for socket communication
+ - `-s, --skip-ngrok` - Skip use of ngrok
 
 ##### Arguments
 
