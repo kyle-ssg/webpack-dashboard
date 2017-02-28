@@ -73,19 +73,20 @@ function Dashboard (options) {
         process.exit(0);
     });
 
-
-    ngrok.connect(port, function (innerErr, url) {
-        if (innerErr) {
-            return console.log(innerErr);
-        }
-        getIP
-            .then(function (res) {
-                ip1 = (url).bold.blue;
-                ip2 = ('http://localhost:' + port).bold.green;
-                ip3 = (res + ':' + port).bold.grey;
-                this.ips.log(ip1 + '\n' + ip2 + '\n' + ip3 + '{/}')
-            }.bind(this));
-    }.bind(this));
+    if (!options || !options.skipNgrok) {
+        ngrok.connect(port, function (innerErr, url) {
+            if (innerErr) {
+                return console.log(innerErr);
+            }
+            getIP
+                .then(function (res) {
+                    ip1 = (url).bold.blue;
+                    ip2 = ('http://localhost:' + port).bold.green;
+                    ip3 = (res + ':' + port).bold.grey;
+                    this.ips.log(ip1 + '\n' + ip2 + '\n' + ip3 + '{/}')
+                }.bind(this));
+        }.bind(this));
+    }
 
     updateStatus();
     this.screen.render();
